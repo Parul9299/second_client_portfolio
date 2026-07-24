@@ -116,6 +116,7 @@ export function Contact() {
                     name="phone"
                     placeholder="+91 xxxxx xxxxx"
                     className="contact-input"
+                    maxLength={10}
                   />
                 </div>
 
