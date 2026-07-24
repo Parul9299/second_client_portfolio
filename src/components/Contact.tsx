@@ -19,6 +19,7 @@ export function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log("ACCESS_KEY:", ACCESS_KEY);
     e.preventDefault();
     setStatus('loading');
 
