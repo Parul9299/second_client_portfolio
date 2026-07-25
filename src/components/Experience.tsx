@@ -3,17 +3,17 @@ import { experiences } from '../data';
 
 export function Experience() {
   return (
-    <section className="py-24 lg:py-32 bg-[#0d0d0d] relative overflow-hidden">
+    <section className="py-16 xs:py-20 sm:py-24 lg:py-32 bg-[#0d0d0d] relative overflow-hidden">
       <div className="absolute top-0 left-1/4 w-[400px] h-[400px] rounded-full bg-[#4af600]/3 blur-[120px]" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="reveal text-center mb-16">
+      <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 relative z-10">
+        <div className="reveal text-center mb-10 xs:mb-12 sm:mb-16">
           <div className="flex items-center justify-center gap-4 mb-4">
             <span className="green-line" />
             <span className="section-label">Career</span>
             <span className="green-line" />
           </div>
-          <h2 className="section-heading text-white text-5xl lg:text-6xl">
+          <h2 className="section-heading text-white text-4xl xs:text-5xl lg:text-6xl">
             Work <span className="text-accent">Experience</span>
           </h2>
         </div>
@@ -22,7 +22,7 @@ export function Experience() {
           {experiences.map((exp, i) => (
             <div
               key={i}
-              className="reveal exp-line pl-10 pb-12 last:pb-0"
+              className="reveal exp-line pl-7 xs:pl-8 sm:pl-10 pb-10 xs:pb-12 last:pb-0"
               style={{ transitionDelay: `${i * 0.15}s` }}
             >
               {/* Dot */}
@@ -45,10 +45,10 @@ export function Experience() {
               </div>
 
               {/* Card */}
-              <div className="card p-7">
+              <div className="card p-5 xs:p-6 sm:p-7">
                 <div className="flex items-start justify-between mb-5">
                   <div>
-                    <h3 className="font-condensed text-2xl font-bold text-white uppercase tracking-wide">{exp.role}</h3>
+                    <h3 className="font-condensed text-xl xs:text-2xl font-bold text-white uppercase tracking-wide">{exp.role}</h3>
                     <p className="text-[#4af600] font-medium text-sm mt-1">{exp.company}</p>
                     <p className="text-[#666] text-xs mt-1 flex items-center gap-1">
                       <MapPin size={11} /> {exp.location}

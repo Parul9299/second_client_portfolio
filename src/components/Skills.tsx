@@ -16,22 +16,22 @@ export function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="py-24 lg:py-32 bg-[#141414] relative overflow-hidden" ref={ref}>
+    <section id="skills" className="py-16 xs:py-20 sm:py-24 lg:py-32 bg-[#141414] relative overflow-hidden" ref={ref}>
       <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] rounded-full bg-[#4af600]/4 blur-[120px]" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="reveal text-center mb-16">
+      <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 relative z-10">
+        <div className="reveal text-center mb-10 xs:mb-12 sm:mb-16">
           <div className="flex items-center justify-center gap-4 mb-4">
             <span className="green-line" />
             <span className="section-label">Expertise</span>
             <span className="green-line" />
           </div>
-          <h2 className="section-heading text-white text-5xl lg:text-6xl">
+          <h2 className="section-heading text-white text-4xl xs:text-5xl lg:text-6xl">
             Skills & <span className="text-accent">Proficiency</span>
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Skill bars */}
           <div className="reveal-left">
             <h3 className="flex items-center gap-2 text-white font-condensed text-xl font-bold uppercase tracking-wide mb-8">
@@ -78,7 +78,7 @@ export function Skills() {
 
             {/* Adobe tools */}
             <h3 className="text-white font-condensed text-xl font-bold uppercase tracking-wide mb-6">Primary Tools</h3>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 xs:grid-cols-3 gap-3">
               {[
                 { label: 'Photoshop', short: 'Ps', color: '#31A8FF' },
                 { label: 'Illustrator', short: 'Ai', color: '#FF9A00' },
@@ -87,7 +87,7 @@ export function Skills() {
                 { label: 'After FX', short: 'Ae', color: '#9999FF' },
                 { label: 'Acrobat', short: 'Ac', color: '#FF0000' },
               ].map((tool) => (
-                <div key={tool.label} className="card p-4 flex items-center gap-3 group">
+                <div key={tool.label} className="card p-3 xs:p-4 flex items-center gap-2 xs:gap-3 group">
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center text-black text-sm font-black flex-shrink-0 group-hover:scale-110 transition-transform"
                     style={{ backgroundColor: tool.color }}

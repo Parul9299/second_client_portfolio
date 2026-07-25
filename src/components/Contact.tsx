@@ -73,8 +73,8 @@ export function Contact() {
 
             <div className="space-y-4">
               {[
-                { icon: <Mail size={18} />, label: 'Email', value: 'kabirkhanat8@gmail.com', href: 'mailto:kabirkhanat8@gmail.com' },
-                { icon: <Phone size={18} />, label: 'Phone', value: '+91 8885857725', href: 'tel:+918885857725' },
+                { icon: <Mail size={18} />, label: 'Email', value: 'kabirkhanat6@gmail.com', href: 'mailto:kabirkhanat6@gmail.com' },
+                { icon: <Phone size={18} />, label: 'Phone', value: '+91 8865857725', href: 'tel:+918865857725' },
                 { icon: <MapPin size={18} />, label: 'Location', value: 'Mathura, India — 281006', href: '#' },
               ].map((item) => (
                 <a

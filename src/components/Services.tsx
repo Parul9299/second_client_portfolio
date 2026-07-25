@@ -7,17 +7,17 @@ const icons: Record<string, LucideIcon> = {
 
 export function Services() {
   return (
-    <section id="services" className="py-24 lg:py-32 bg-[#0d0d0d] relative overflow-hidden">
+    <section id="services" className="py-16 xs:py-20 sm:py-24 lg:py-32 bg-[#0d0d0d] relative overflow-hidden">
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-[#4af600]/3 blur-[140px]" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="reveal flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+      <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 relative z-10">
+        <div className="reveal flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 xs:mb-12 sm:mb-16">
           <div>
             <div className="flex items-center gap-4 mb-4">
               <span className="green-line" />
               <span className="section-label">What I Do</span>
             </div>
-            <h2 className="section-heading text-white text-5xl lg:text-6xl">
+            <h2 className="section-heading text-white text-4xl xs:text-5xl lg:text-6xl">
               Services<span className="text-accent">.</span>
             </h2>
           </div>
@@ -26,19 +26,19 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-5">
           {services.map((service, i) => {
             const Icon = icons[service.icon];
             return (
               <div
                 key={service.title}
-                className="card p-8 reveal group"
+                className="card p-5 xs:p-6 sm:p-8 reveal group"
                 style={{ transitionDelay: `${i * 0.08}s` }}
               >
                 <div className="service-icon">
                   {Icon && <Icon size={24} />}
                 </div>
-                <h3 className="font-condensed text-2xl font-bold text-white uppercase tracking-wide mb-3">
+                <h3 className="font-condensed text-xl xs:text-2xl font-bold text-white uppercase tracking-wide mb-3">
                   {service.title}
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{service.desc}</p>

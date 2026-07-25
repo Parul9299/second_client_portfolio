@@ -2,25 +2,25 @@ import { MapPin, Mail, Phone, Languages, Award, Briefcase } from 'lucide-react';
 
 export function About() {
   return (
-    <section id="about" className="py-24 lg:py-32 bg-[#141414] relative overflow-hidden">
+    <section id="about" className="py-16 xs:py-20 sm:py-24 lg:py-32 bg-[#141414] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-[#4af600]/4 blur-[120px]" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12">
+      <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-8 sm:gap-12">
           {/* Left — heading */}
           <div className="lg:col-span-4 reveal-left">
             <div className="flex items-center gap-4 mb-6">
               <span className="green-line" />
               <span className="section-label">About Me</span>
             </div>
-            <h2 className="section-heading text-white text-5xl lg:text-6xl mb-8">
+            <h2 className="section-heading text-white text-4xl xs:text-5xl lg:text-6xl mb-6 sm:mb-8">
               The<br />Designer<br /><span className="text-accent">Behind</span><br />The Work
             </h2>
             <div className="space-y-4">
               {[
                 { icon: <MapPin size={16} />, label: 'Location', value: 'Mathura, India — 281006' },
-                { icon: <Mail size={16} />, label: 'Email', value: 'kabirkhanat8@gmail.com' },
-                { icon: <Phone size={16} />, label: 'Phone', value: '+91 8885857725' },
+                { icon: <Mail size={16} />, label: 'Email', value: 'kabirkhanat6@gmail.com' },
+                { icon: <Phone size={16} />, label: 'Phone', value: '+91 8865857725' },
                 { icon: <Languages size={16} />, label: 'Languages', value: 'Hindi (C2) · English (B1)' },
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-3 group">
@@ -36,7 +36,7 @@ export function About() {
 
           {/* Right — bio */}
           <div className="lg:col-span-8 reveal-right">
-            <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
+            <div className="space-y-5 sm:space-y-6 text-gray-400 text-base sm:text-lg leading-relaxed">
               <p>
                 I'm <span className="text-white font-semibold">Kabir Khan</span>, a Senior Graphic Designer based in Mathura, India, with a passion for translating complex ideas into compelling visual stories. With experience spanning <span className="text-[#4af600]">branding, print, and digital media</span>, I bring both technical precision and creative vision to every project.
               </p>
@@ -49,7 +49,7 @@ export function About() {
             </div>
 
             {/* Highlight cards */}
-            <div className="grid sm:grid-cols-3 gap-4 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 xs:gap-4 mt-8 sm:mt-10">
               {[
                 { icon: <Briefcase size={20} />, title: '3+ Years', sub: 'Professional Experience' },
                 { icon: <Award size={20} />, title: 'Award Winner', sub: 'Employee of the Year 2024' },
