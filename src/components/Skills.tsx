@@ -83,9 +83,9 @@ export function Skills() {
                 { label: 'Photoshop', short: 'Ps', color: '#31A8FF' },
                 { label: 'Illustrator', short: 'Ai', color: '#FF9A00' },
                 { label: 'InDesign', short: 'Id', color: '#FF3366' },
-                { label: 'Premiere', short: 'Pr', color: '#9999FF' },
-                { label: 'After FX', short: 'Ae', color: '#9999FF' },
-                { label: 'Acrobat', short: 'Ac', color: '#FF0000' },
+                { label: 'Wondershare Filmora', short: 'WF', color: '#9999FF' },
+                { label: 'Canva', short: 'Cv', color: '#9999FF' },
+                { label: 'Corel Draw', short: 'CD', color: '#FF0000' },
               ].map((tool) => (
                 <div key={tool.label} className="card p-3 xs:p-4 flex items-center gap-2 xs:gap-3 group">
                   <div
