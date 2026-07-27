@@ -51,7 +51,7 @@ export function About() {
             {/* Highlight cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 xs:gap-4 mt-8 sm:mt-10">
               {[
-                { icon: <Briefcase size={20} />, title: '3+ Years', sub: 'Professional Experience' },
+                { icon: <Briefcase size={20} />, title: '4+ Years', sub: 'Professional Experience' },
                 { icon: <Award size={20} />, title: 'Award Winner', sub: 'Employee of the Year 2024' },
                 { icon: <Languages size={20} />, title: 'Bilingual', sub: 'Hindi & English Proficiency' },
               ].map((card) => (

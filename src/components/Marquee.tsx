@@ -1,17 +1,75 @@
-import { Plus } from 'lucide-react';
+import { Plus } from "lucide-react";
+
+const row1 = [
+  "Brand Identity Design",
+  "Creative Direction",
+  "Logo Design",
+  "Brand Guidelines",
+  "Medical Branding",
+  "Packaging Design",
+];
+
+const row2 = [
+  "Print Media Design",
+  "Typography",
+  "Brand Strategy",
+  "Mentoring",
+  "Banner Design",
+  "Illustration",
+];
+
+const row3 = [
+  "Marketing Creatives",
+  "Social Media",
+  "Mockups",
+  "Video Editing",
+  "Discipline",
+  "Creative Design",
+];
+
+const MarqueeRow = ({
+  items,
+  reverse = false,
+}: {
+  items: string[];
+  reverse?: boolean;
+}) => (
+  <div className="overflow-hidden whitespace-nowrap py-3">
+    <div
+      className={`flex w-max items-center gap-10 ${
+        reverse ? "marquee-right" : "marquee-left"
+      }`}
+    >
+      {[...items, ...items, ...items, ...items].map((item, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-4 shrink-0"
+        >
+          <span className="font-condensed font-bold text-[34px] text-[#444] uppercase">
+            {item}
+          </span>
+
+          <Plus
+            size={18}
+            className="text-[#4af600] opacity-70"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 export function Marquee() {
-  const items = ['Branding', 'Logo Design', 'Print Media', 'Packaging', 'Social Media', 'Mockups', 'Illustration', 'Video Editing'];
   return (
-    <div className="bg-[#0d0d0d] border-y border-[#222] py-3 xs:py-4 sm:py-5 overflow-hidden">
-      <div className="marquee-track marquee-left">
-        {[...items, ...items, ...items, ...items].map((item, i) => (
-          <span key={i} className="inline-flex items-center gap-3 mx-4 xs:mx-6 sm:mx-8">
-            <span className="font-condensed text-lg xs:text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">{item}</span>
-            <Plus size={16} className="text-[#4af600]" />
-          </span>
-        ))}
-      </div>
-    </div>
+    <section className="py-20">
+      <MarqueeRow items={row1} />
+
+      <MarqueeRow
+        items={row2}
+        reverse
+      />
+
+      <MarqueeRow items={row3} />
+    </section>
   );
 }
