@@ -34,31 +34,6 @@ export function Hero() {
     <section id="home" className="relative w-full min-h-screen overflow-hidden bg-[#111111]">
       <h1 className="sr-only">Kabir Khan — Creative Art Director &amp; Graphic Designer</h1>
 
-      {/* ════ GHOST SILHOUETTE (Desktop Only) ════ */}
-      <div
-        className="absolute pointer-events-none select-none hidden md:block"
-        style={{
-          left: 'clamp(40px, 6vw, 120px)',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          width: 'clamp(280px, 42vw, 600px)',
-          height: 'clamp(380px, 72vh, 800px)',
-          zIndex: 1,
-        }}
-      >
-        <img
-          src={kabirImage}
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full object-cover object-top"
-          style={{
-            filter: 'brightness(0.09) contrast(1.4) grayscale(1)',
-            maskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 80%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 80%)',
-          }}
-        />
-      </div>
-
       {/* ════ PHOTO (Desktop Layout - Right Side) ════ */}
       <div
         className="absolute top-0 right-0 h-full hidden md:block"
@@ -106,7 +81,6 @@ export function Hero() {
           className="w-full h-full object-cover object-top opacity-55"
           style={{ filter: 'contrast(1.1) brightness(0.75)' }}
         />
-        {/* Dark Overlays for maximum text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/0 to-[#111111]/40" />
       </div>
 
@@ -174,64 +148,79 @@ export function Hero() {
 
       {/* ════ DESKTOP CONTENT ════ */}
       <div
-        className="hidden md:flex absolute inset-y-0 left-0 flex-col"
+        className="hidden md:flex absolute inset-y-0 left-0 flex-col justify-between"
         style={{
           width: '58%',
           zIndex: 10,
-          paddingLeft: 'clamp(32px,6vw,96px)',
+          paddingLeft: 'clamp(32px, 6vw, 96px)',
           paddingRight: '2vw',
-          paddingTop: 'clamp(72px,8vh,96px)',
-          paddingBottom: 'clamp(28px,4vh,48px)',
+          paddingTop: 'clamp(80px, 10vh, 120px)',
+          paddingBottom: 'clamp(28px, 4vh, 48px)',
         }}
       >
         <div
           className="flex items-center gap-3"
-          style={{ animation: 'fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both', marginBottom: 'clamp(16px,3vh,28px)' }}
+          style={{ animation: 'fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both' }}
         >
           <span className="font-condensed text-[#666] text-xs font-bold tracking-widest">2026</span>
           <div style={{ width: 1, height: 28, background: '#444' }} />
           <span className="font-condensed text-[#888] text-xs tracking-[0.2em] uppercase">Think · Design · Display</span>
         </div>
 
-        <div className="relative flex-1 flex flex-col justify-center">
+        <div className="relative flex-1 flex flex-col justify-center my-auto">
           <div
             style={{
-              width: 'clamp(14px,1.8vw,22px)',
-              height: 'clamp(14px,1.8vw,22px)',
+              width: 'clamp(14px, 1.5vw, 22px)',
+              height: 'clamp(14px, 1.5vw, 22px)',
               borderRadius: '50%',
               border: '2.5px solid #ffffff',
-              marginBottom: 'clamp(6px,0.8vh,10px)',
+              marginBottom: 'clamp(8px, 1.2vh, 16px)',
               animation: 'scaleUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.6s both',
             }}
           />
 
-          <div style={{ animation: 'fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both' }}>
-            <div className="flex items-end leading-none" style={{ marginBottom: '-0.04em' }}>
+          {/* ── RESPONSIVE TYPOGRAPHY CONTAINER ── */}
+          <div 
+            className="flex flex-col select-none"
+            style={{ animation: 'fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both' }}
+          >
+            {/* Top Word: Creat */}
+            <div className="flex items-end leading-[0.8]">
               <span
-                className="font-condensed font-black uppercase leading-none block"
-                style={{ fontSize: 'clamp(60px, 12.5vw, 176px)', letterSpacing: '-0.025em', color: '#4af600' }}
+                className="font-condensed font-black block pl-[clamp(30px, 4vw, 62px)] max-[670px]:pl-[clamp(20px, 4.5vw, 36px)]"
+                style={{
+                  fontSize: 'clamp(90px, 7vw, 101px)',
+                  letterSpacing: '-0.025em',
+                  color: '#4af600',
+                  paddingLeft: 'clamp(30px, 3.5vw, 62px)',
+                }}
               >
-                .Creat
+                Creat
               </span>
             </div>
 
-            <div className="flex items-end leading-none">
+            {/* Bottom Row: ive + Ar */}
+            <div className="flex items-baseline leading-[0.8] mt-[-20px] min-[670px]:mt-[-5px] min-[768px]:mt-[-14px]">
               <span
-                className="font-condensed font-black uppercase leading-none"
-                style={{ fontSize: 'clamp(60px, 12.5vw, 176px)', letterSpacing: '-0.025em', color: '#ffffff' }}
+                className="font-condensed font-black"
+                style={{
+                  fontSize: 'clamp(150px, 12vw, 175px)',
+                  letterSpacing: '-0.025em',
+                  color: '#ffffff',
+                }}
               >
                 ive
               </span>
               <span
-                className="font-condensed font-black uppercase leading-none mb-[clamp(18px,0.4vw,6px)] min-[769px]:mb-[clamp(25px,0.4vw,6px)]"
+                className="font-condensed font-black inline-block origin-bottom-left"
                 style={{
-                  fontSize: 'clamp(36px, 7.5vw, 108px)',
+                  fontSize: 'clamp(80px, 6vw, 96px)',
                   letterSpacing: '-0.02em',
                   color: '#4af600',
-                  marginLeft: 'clamp(6px,1.2vw,18px)',
-                  paddingBottom: 'clamp(2px,0.4vw,6px)',
                   opacity: 0.9,
-                  rotate: '270deg',
+                  transform: 'rotate(-90deg) translateY(100%)',
+                  marginLeft: 'clamp(8px, -0.5vw, 18px)',
+                  whiteSpace: 'nowrap',
                 }}
               >
                 Ar
@@ -315,7 +304,7 @@ export function Hero() {
         ))}
       </div>
 
-      {/* ════ MOBILE CONTENT OVERLAY (Complete image behind text) ════ */}
+      {/* ════ MOBILE & TABLET CONTENT OVERLAY ════ */}
       <div className="md:hidden relative z-10 flex flex-col justify-end min-h-screen px-6 pt-28 pb-12">
         <div className="flex items-center gap-3 mb-4">
           <span className="font-condensed text-[#888] text-[11px] font-bold tracking-widest">2026</span>
@@ -325,31 +314,43 @@ export function Hero() {
 
         <div style={{ width: 14, height: 14, borderRadius: '50%', border: '2px solid #fff', marginBottom: 8 }} />
 
-        <div>
-          <div className="leading-none">
+        {/* Mobile Responsive Layout */}
+        <div className="flex flex-col select-none">
+          <div className="flex items-end leading-[0.8]">
             <span
-              className="font-condensed font-black uppercase leading-none block drop-shadow-lg"
-              style={{ fontSize: 'clamp(52px,15vw,80px)', letterSpacing: '-0.025em', color: '#4af600' }}
+              className="font-condensed font-black block drop-shadow-lg pl-[clamp(20px, 5vw, 36px)] min-[424px]:pl-[clamp(15px, 4vw, 36px)]"
+              style={{
+                fontSize: 'clamp(62px, 9vw, 36px)',
+                letterSpacing: '-0.025em',
+                color: '#4af600',
+                paddingLeft: 'clamp(20px, 5vw, 36px)',
+                marginBottom: '-10px',
+              }}
             >
-              .Creat
+              Creat
             </span>
           </div>
-          <div className="flex items-end leading-none">
+          <div className="flex items-baseline leading-[0.8] mt-[-0.05em]">
             <span
-              className="font-condensed font-black uppercase leading-none drop-shadow-lg"
-              style={{ fontSize: 'clamp(52px,15vw,80px)', letterSpacing: '-0.025em', color: '#ffffff' }}
+              className="font-condensed font-black drop-shadow-lg"
+              style={{
+                fontSize: 'clamp(100px, 14vw, 76px)',
+                letterSpacing: '-0.025em',
+                color: '#ffffff',
+              }}
             >
               ive
             </span>
             <span
-              className="font-condensed font-black uppercase leading-none drop-shadow-lg mb-[3vw] md:mb-[2vw]"
+              className="font-condensed font-black drop-shadow-lg inline-block origin-bottom-left"
               style={{
-                fontSize: 'clamp(32px,9vw,52px)',
+                fontSize: 'clamp(52px, 8vw, 44px)',
                 letterSpacing: '-0.02em',
                 color: '#4af600',
-                marginLeft: '2vw',
                 opacity: 0.9,
-                rotate: '270deg',
+                transform: 'rotate(-90deg) translateY(100%)',
+                marginLeft: '8px',
+                whiteSpace: 'nowrap',
               }}
             >
               Ar

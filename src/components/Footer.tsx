@@ -88,8 +88,8 @@ export function Footer() {
           </div>
 
           {/* Social and description */}
-          <div className="text-center lg:text-right">
-            <p className="text-[#999] text-sm font-condensed mb-4 max-w-xs lg:max-w-sm">
+          <div className="text-center lg:text-center">
+            <p className="text-[#999] text-sm font-condensed mb-4 w-100 lg:max-w-sm">
               Transforming ideas into premium visual experiences that build trust, strengthen brands, and inspire action.
             </p>
             <p className="text-[#666] text-xs font-condensed uppercase tracking-widest">

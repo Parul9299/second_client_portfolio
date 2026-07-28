@@ -5,6 +5,7 @@ import { Hero } from './components/Hero';
 import { Marquee } from './components/Marquee';
 import { About } from './components/About';
 import { Services } from './components/Services';
+// import { VideoPortfolio } from './components/VideoPortfolio';
 import { Portfolio } from './components/Portfolio';
 import { Experience } from './components/Experience';
 import { Skills } from './components/Skills';
@@ -36,6 +37,7 @@ export default function App() {
       <Marquee />
       <About />
       <Services />
+      {/* <VideoPortfolio/> */}
       <Portfolio />
       <Experience />
       <Skills />
