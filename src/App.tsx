@@ -1,18 +1,79 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useReveal } from './hooks/useReveal';
 import { useCursor } from './hooks/useCursor';
-import { Hero } from './components/Hero';
-import { Marquee } from './components/Marquee';
-import { About } from './components/About';
-import { Services } from './components/Services';
-// import { VideoPortfolio } from './components/VideoPortfolio';
-import { Portfolio } from './components/Portfolio';
-import { Experience } from './components/Experience';
-import { Skills } from './components/Skills';
-import { Education } from './components/Education';
-import { LanguagesSection } from './components/LanguagesSection';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+
+// Lazy Loaded Components
+const Hero = lazy(() =>
+  import('./components/Hero').then((module) => ({
+    default: module.Hero,
+  }))
+);
+
+const Marquee = lazy(() =>
+  import('./components/Marquee').then((module) => ({
+    default: module.Marquee,
+  }))
+);
+
+const About = lazy(() =>
+  import('./components/About').then((module) => ({
+    default: module.About,
+  }))
+);
+
+const Services = lazy(() =>
+  import('./components/Services').then((module) => ({
+    default: module.Services,
+  }))
+);
+
+const VideoPortfolio = lazy(() =>
+  import('./components/VideoPortfolio').then((module) => ({
+    default: module.VideoPortfolio,
+  }))
+);
+
+const Portfolio = lazy(() =>
+  import('./components/Portfolio').then((module) => ({
+    default: module.Portfolio,
+  }))
+);
+
+const Experience = lazy(() =>
+  import('./components/Experience').then((module) => ({
+    default: module.Experience,
+  }))
+);
+
+const Skills = lazy(() =>
+  import('./components/Skills').then((module) => ({
+    default: module.Skills,
+  }))
+);
+
+const Education = lazy(() =>
+  import('./components/Education').then((module) => ({
+    default: module.Education,
+  }))
+);
+
+const LanguagesSection = lazy(() =>
+  import('./components/LanguagesSection').then((module) => ({
+    default: module.LanguagesSection,
+  }))
+);
+
+const Contact = lazy(() =>
+  import('./components/Contact').then((module) => ({
+    default: module.Contact,
+  }))
+);
+
+const Footer = lazy(() =>
+  import('./components/Footer').then((module) => ({
+    default: module.Footer,
+  }))
+);
 
 export default function App() {
   useReveal();
@@ -21,9 +82,9 @@ export default function App() {
   useEffect(() => {
     // Re-run reveal observer after components mount
     const timer = setTimeout(() => {
-      const event = new Event('DOMContentLoaded');
-      window.dispatchEvent(event);
+      window.dispatchEvent(new Event('DOMContentLoaded'));
     }, 100);
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -33,18 +94,26 @@ export default function App() {
       <div ref={ringRef} className="cursor-ring" />
       <div className="scanline" />
 
-      <Hero />
-      <Marquee />
-      <About />
-      <Services />
-      {/* <VideoPortfolio/> */}
-      <Portfolio />
-      <Experience />
-      <Skills />
-      <Education />
-      <LanguagesSection />
-      <Contact />
-      <Footer />
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex items-center justify-center bg-[#111111]">
+            <div className="w-12 h-12 border-4 border-[#4af600] border-t-transparent rounded-full animate-spin" />
+          </div>
+        }
+      >
+        <Hero />
+        <Marquee />
+        <About />
+        <Services />
+        <VideoPortfolio />
+        <Portfolio />
+        <Experience />
+        <Skills />
+        <Education />
+        <LanguagesSection />
+        <Contact />
+        <Footer />
+      </Suspense>
     </div>
   );
 }
