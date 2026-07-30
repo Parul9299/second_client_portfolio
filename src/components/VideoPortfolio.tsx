@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Play, X } from "lucide-react";
+import { Play, X, ArrowUpRight } from "lucide-react";
 
 interface VideoProject {
   id: string;
@@ -122,6 +122,19 @@ export function VideoPortfolio() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* ════ VIEW MORE BUTTON ════ */}
+        <div className="mt-12 flex justify-center">
+          <a
+            href="#more-videos" // Yahan apne target link ya click action ko change kar sakte hain
+            className="group relative inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#181818] border border-white/15 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:border-[#4af600] hover:text-[#4af600] hover:shadow-[0_0_25px_rgba(74,246,0,0.25)] hover:bg-black/40"
+          >
+            <span>View More Work</span>
+            <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-[#4af600] group-hover:text-black transition-all duration-300">
+              <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:rotate-45" />
+            </div>
+          </a>
         </div>
 
         {/* ════ VIDEO POPUP MODAL ════ */}

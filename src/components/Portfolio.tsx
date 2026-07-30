@@ -38,18 +38,18 @@ export function Portfolio() {
       style={{ height: `${scrollHeight}vh` }}
     >
       {/* Section Header */}
-      <div className="max-w-7xl mx-auto mb-0 mt-20 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-8 sm:mb-12 mt-12 sm:mt-16 md:mt-20 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <span className="text-[#4af600] font-mono text-xs font-bold tracking-widest uppercase">
             Featured Design Portfolio
           </span>
 
-          <h2 className="text-3xl md:text-6xl font-black font-condensed tracking-tight mt-1">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl font-black font-condensed tracking-tight mt-1">
             CREATIVE DESIGN SHOWCASE
           </h2>
         </div>
 
-        <p className="text-gray-400 text-sm max-w-md">
+        <p className="text-gray-400 text-xs sm:text-sm max-w-md">
           Explore a curated collection of branding, logo design, packaging, print,
           social media creatives, and visual identity projects crafted to build
           impactful and memorable brands.

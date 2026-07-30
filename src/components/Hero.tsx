@@ -132,7 +132,7 @@ export function Hero() {
 
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
-        <div className="fixed left-0 right-0 z-40 bg-[#111111]/95 backdrop-blur-md border-b border-[#222] px-5 py-6 flex flex-col gap-4 md:hidden" style={{ top: 61 }}>
+        <div className="fixed left-0 right-0 z-40 bg-[#111111]/95 backdrop-blur-md border-b border-[#222] px-5 py-6 flex flex-col gap-4 md:hidden" style={{ top: 52 }}>
           {navLinks.map((item) => (
             <a
               key={item.label}
