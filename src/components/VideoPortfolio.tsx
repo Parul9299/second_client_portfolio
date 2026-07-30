@@ -71,25 +71,6 @@ export function VideoPortfolio() {
           }
         `}</style>
 
-        {/* Section Header */}
-        <div className="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <span className="text-[#4af600] font-mono text-xs font-bold tracking-widest uppercase">
-              Featured Design Portfolio
-            </span>
-
-            <h2 className="text-3xl md:text-5xl font-black font-condensed tracking-tight mt-1">
-              CREATIVE DESIGN SHOWCASE
-            </h2>
-          </div>
-
-          <p className="text-gray-400 text-sm max-w-md">
-            Explore a curated collection of branding, logo design, packaging, print,
-            social media creatives, and visual identity projects crafted to build
-            impactful and memorable brands.
-          </p>
-        </div>
-
         {/* Infinite Carousel Container */}
         <div className="relative w-full overflow-hidden">
           {/* Edge Gradient Blurs */}

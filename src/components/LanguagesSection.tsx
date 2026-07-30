@@ -1,6 +1,6 @@
 export function LanguagesSection() {
   return (
-    <section className="py-14 xs:py-16 sm:py-20 bg-[#141414] relative overflow-hidden">
+    <section className="py-14 xs:py-16 sm:py-20 bg-[#0d0d0d] relative overflow-hidden">
       <div className="max-w-3xl mx-auto px-4 xs:px-5 sm:px-6">
         <div className="reveal text-center mb-8 xs:mb-10 sm:mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">

@@ -34,18 +34,37 @@ export function Portfolio() {
     <section
       id="work"
       ref={sectionRef}
-      className="relative bg-[#0d0d0d] text-white"
+      className="relative text-white"
       style={{ height: `${scrollHeight}vh` }}
     >
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto mb-0 mt-20 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span className="text-[#4af600] font-mono text-xs font-bold tracking-widest uppercase">
+            Featured Design Portfolio
+          </span>
+
+          <h2 className="text-3xl md:text-6xl font-black font-condensed tracking-tight mt-1">
+            CREATIVE DESIGN SHOWCASE
+          </h2>
+        </div>
+
+        <p className="text-gray-400 text-sm max-w-md">
+          Explore a curated collection of branding, logo design, packaging, print,
+          social media creatives, and visual identity projects crafted to build
+          impactful and memorable brands.
+        </p>
+      </div>
+
       {/* Sticky Fullscreen Container */}
       <div className="sticky top-0 h-screen w-full flex items-center justify-center px-4 sm:px-8 md:px-12 overflow-hidden">
-        
+
         {/* Exact Aspect-Ratio Card Stack Frame */}
         <div className="relative w-full max-w-6xl h-[75vh] max-h-[700px] min-h-[420px] flex items-center justify-center">
           {portfolioItems.map((item, idx) => {
             // Step index progression: 0 to (total - 1)
             const cardStep = progress * (total - 1);
-            
+
             // Distance of current card from scroll focal point
             const diff = idx - cardStep;
 

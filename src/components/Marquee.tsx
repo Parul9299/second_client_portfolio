@@ -34,7 +34,7 @@ const MarqueeRow = ({
   items: string[];
   reverse?: boolean;
 }) => (
-  <div className="overflow-hidden whitespace-nowrap py-3">
+  <div className="overflow-hidden ma whitespace-nowrap py-3">
     <div
       className={`flex w-max items-center gap-10 ${
         reverse ? "marquee-right" : "marquee-left"

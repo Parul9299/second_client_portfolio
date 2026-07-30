@@ -39,8 +39,8 @@ export default function App() {
       <Marquee />
       <About />
       <Services />
-      <VideoPortfolio />
       <Portfolio />
+      <VideoPortfolio />
       <Experience />
       <Skills />
       <Education />

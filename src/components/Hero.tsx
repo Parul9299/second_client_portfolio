@@ -180,19 +180,20 @@ export function Hero() {
           />
 
           {/* ── RESPONSIVE TYPOGRAPHY CONTAINER ── */}
-          <div 
+          <div
             className="flex flex-col select-none"
             style={{ animation: 'fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both' }}
           >
             {/* Top Word: Creat */}
             <div className="flex items-end leading-[0.8]">
               <span
-                className="font-condensed font-black block pl-[clamp(30px, 4vw, 62px)] max-[670px]:pl-[clamp(20px, 4.5vw, 36px)]"
+                className="font-condensed font-black block max-[902px]:pl-[38px] max-[992px]:pl-[49px] max-[1024px]:pl-[60px]
+                 text-[199px] max-[1245px]:text-[165px] max-[1024px]:text-[140px] max-[992px]:text-[120px] max-[902px]:text-[91px]
+                 pl-[clamp(75px,4vw,62px)] max-[670px]:pl-[clamp(20px,4.5vw,36px)]
+                 mb-[-35px] max-[902px]:mb-[-9px] max-[992px]:mb-[-20px] max-[1024px]:mb-[-23px]"
                 style={{
-                  fontSize: 'clamp(90px, 7vw, 101px)',
                   letterSpacing: '-0.025em',
                   color: '#4af600',
-                  paddingLeft: 'clamp(30px, 3.5vw, 62px)',
                 }}
               >
                 Creat
@@ -202,9 +203,9 @@ export function Hero() {
             {/* Bottom Row: ive + Ar */}
             <div className="flex items-baseline leading-[0.8] mt-[-20px] min-[670px]:mt-[-5px] min-[768px]:mt-[-14px]">
               <span
-                className="font-condensed font-black"
+                className="font-condensed font-black 
+                 text-[330px] max-[1245px]:text-[285px] max-[1024px]:text-[236px] max-[992px]:text-[203px] max-[902px]:text-[150px]"
                 style={{
-                  fontSize: 'clamp(150px, 12vw, 175px)',
                   letterSpacing: '-0.025em',
                   color: '#ffffff',
                 }}
@@ -212,15 +213,14 @@ export function Hero() {
                 ive
               </span>
               <span
-                className="font-condensed font-black inline-block origin-bottom-left"
+                className="font-condensed font-black inline-block origin-bottom-left whitespace-nowrap
+                 text-[185px] max-[1245px]:text-[146px] max-[1024px]:text-[128px] max-[992px]:text-[105px] max-[902px]:text-[83px]"
                 style={{
-                  fontSize: 'clamp(80px, 6vw, 96px)',
                   letterSpacing: '-0.02em',
                   color: '#4af600',
                   opacity: 0.9,
                   transform: 'rotate(-90deg) translateY(100%)',
                   marginLeft: 'clamp(8px, -0.5vw, 18px)',
-                  whiteSpace: 'nowrap',
                 }}
               >
                 Ar
@@ -314,27 +314,33 @@ export function Hero() {
 
         <div style={{ width: 14, height: 14, borderRadius: '50%', border: '2px solid #fff', marginBottom: 8 }} />
 
-        {/* Mobile Responsive Layout */}
-        <div className="flex flex-col select-none">
+        {/* ── MOBILE RESPONSIVE TYPOGRAPHY CONTAINER ── */}
+        <div
+          className="flex flex-col select-none"
+          style={{ animation: 'fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both' }}
+        >
+          {/* Top Word: Creat */}
           <div className="flex items-end leading-[0.8]">
             <span
-              className="font-condensed font-black block drop-shadow-lg pl-[clamp(20px, 5vw, 36px)] min-[424px]:pl-[clamp(15px, 4vw, 36px)]"
+              className="font-condensed font-black block drop-shadow-lg
+                 text-[62px] max-[425px]:text-[48px] max-[375px]:text-[41px]
+                 pl-[23px] max-[425px]:pl-[25px] max-[375px]:pl-[18px]
+                 mb-[-18px] max-[425px]:mb-[-14px] max-[375px]:mb-[-10px]"
               style={{
-                fontSize: 'clamp(62px, 9vw, 36px)',
                 letterSpacing: '-0.025em',
                 color: '#4af600',
-                paddingLeft: 'clamp(20px, 5vw, 36px)',
-                marginBottom: '-10px',
               }}
             >
               Creat
             </span>
           </div>
+
+          {/* Bottom Row: ive + Ar */}
           <div className="flex items-baseline leading-[0.8] mt-[-0.05em]">
             <span
-              className="font-condensed font-black drop-shadow-lg"
+              className="font-condensed font-black drop-shadow-lg
+                 text-[100px] max-[425px]:text-[82px] max-[375px]:text-[68px]"
               style={{
-                fontSize: 'clamp(100px, 14vw, 76px)',
                 letterSpacing: '-0.025em',
                 color: '#ffffff',
               }}
@@ -342,15 +348,14 @@ export function Hero() {
               ive
             </span>
             <span
-              className="font-condensed font-black drop-shadow-lg inline-block origin-bottom-left"
+              className="font-condensed font-black drop-shadow-lg inline-block origin-bottom-left whitespace-nowrap
+                 text-[52px] max-[425px]:text-[42px] max-[375px]:text-[34px]"
               style={{
-                fontSize: 'clamp(52px, 8vw, 44px)',
                 letterSpacing: '-0.02em',
                 color: '#4af600',
                 opacity: 0.9,
                 transform: 'rotate(-90deg) translateY(100%)',
                 marginLeft: '8px',
-                whiteSpace: 'nowrap',
               }}
             >
               Ar
