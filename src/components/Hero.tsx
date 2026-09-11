@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
-import kabirImage from "../assets/kabir-transparent-image.png";
+import kabirImage from "../assets/kabir-transparent-image.webp";
 
 const navLinks = [
   { label: "HOME", href: "/" },
