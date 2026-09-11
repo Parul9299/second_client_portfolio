@@ -18,6 +18,9 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Gallery } from './components/Gallery';
 
+// Admin Gallery Page
+import { AdminGallery } from './pages/AdminGallery';
+
 function Home() {
   useReveal();
   const { dotRef, ringRef } = useCursor();
@@ -61,6 +64,9 @@ export default function App() {
 
         {/* Gallery Page */}
         <Route path="/gallery" element={<Gallery />} />
+
+        {/* Admin Gallery Page */}
+        <Route path="/admin/" element={<AdminGallery />} />
       </Routes>
     </BrowserRouter>
   );
