@@ -10,7 +10,6 @@ import {
   Settings,
   Trash2,
   Upload,
-  Video,
   X,
 } from "lucide-react";
 
