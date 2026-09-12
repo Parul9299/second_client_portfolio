@@ -260,7 +260,9 @@ export function Gallery() {
     setEmail("");
     setPassword("");
 
-    navigate("/admin");
+    sessionStorage.setItem("adminUnlocked", "true");
+
+    navigate("/admin", { replace: true });
   };
 
   return (
