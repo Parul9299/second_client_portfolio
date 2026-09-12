@@ -114,15 +114,16 @@ export function AdminGallery() {
   };
 
   const saveEdit = async () => {
-    if (!editingId) return;
+  if (!editingId) return;
 
-    await editItem(editingId, {
-      title: editTitle,
-      category: editCategory,
-    });
+  await editItem(
+    editingId,
+    editTitle,
+    editCategory,
+  );
 
-    cancelEdit();
-  };
+  cancelEdit();
+};
 
   const handleFiles = async (
     files: FileList | File[],

@@ -1,78 +1,68 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useState } from 'react';
+import { supabase } from '../lib/supabase';
 
-import {
-  addCategory,
-  addGalleryItem,
-  deleteCategory,
-  deleteGalleryItem,
-  getCategories,
-  getGalleryItems,
-  renameCategory,
-  updateGalleryItem,
-  type StoredGalleryItem,
-} from "../utils/galleryDB";
-
-export type GalleryMedia = StoredGalleryItem & {
+export interface GalleryMedia {
+  id: string;
+  title: string;
+  category: string;
+  year: string;
+  type: 'image' | 'video';
   url: string;
-};
+  storage_path: string;
+  created_at: string;
+  updated_at: string;
+}
+
+const DEFAULT_CATEGORY = 'Uncategorised';
 
 export function useGalleryStorage() {
   const [items, setItems] = useState<GalleryMedia[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const objectUrls = useRef<string[]>([]);
+  const loadCategories = useCallback(async () => {
+    const { data, error } = await supabase
+      .from('gallery_categories')
+      .select('name')
+      .order('name');
 
-  const revokeObjectUrls = () => {
-    objectUrls.current.forEach((url) => {
-      URL.revokeObjectURL(url);
-    });
-
-    objectUrls.current = [];
-  };
-
-  const loadItems = useCallback(async () => {
-    try {
-      const storedItems = await getGalleryItems();
-
-      revokeObjectUrls();
-
-      const media = storedItems.map((item) => {
-        const url = URL.createObjectURL(item.blob);
-
-        objectUrls.current.push(url);
-
-        return {
-          ...item,
-          url,
-        };
-      });
-
-      setItems(media);
-    } catch (error) {
-      console.error(
-        "Failed to load gallery media:",
-        error,
-      );
+    if (error) {
+      console.error('Error loading categories:', error);
+      return;
     }
+
+    const names = data?.map((item) => item.name) ?? [];
+
+    if (!names.includes(DEFAULT_CATEGORY)) {
+      names.push(DEFAULT_CATEGORY);
+    }
+
+    setCategories(names);
   }, []);
 
-  const loadCategories = useCallback(async () => {
-    try {
-      const storedCategories = await getCategories();
+  const loadItems = useCallback(async () => {
+    const { data, error } = await supabase
+      .from('gallery_items')
+      .select('*')
+      .order('created_at', { ascending: false });
 
-      setCategories(storedCategories);
-    } catch (error) {
-      console.error(
-        "Failed to load categories:",
-        error,
-      );
+    if (error) {
+      console.error('Error loading gallery items:', error);
+      return;
     }
+
+    const galleryItems: GalleryMedia[] = (data ?? []).map((item) => {
+      const { data: publicUrlData } = supabase.storage
+        .from('gallery-media')
+        .getPublicUrl(item.storage_path);
+
+      return {
+        ...item,
+        url: publicUrlData.publicUrl,
+      };
+    });
+
+    setItems(galleryItems);
   }, []);
 
   const reload = useCallback(async () => {
@@ -88,109 +78,227 @@ export function useGalleryStorage() {
 
   useEffect(() => {
     reload();
-
-    return () => {
-      revokeObjectUrls();
-    };
   }, [reload]);
-
-  /* ------------------------------------------------------------------------ */
-  /* MEDIA                                                                    */
-  /* ------------------------------------------------------------------------ */
 
   const addItem = async (
     file: File,
     title?: string,
-    category = "Uncategorised",
+    category = DEFAULT_CATEGORY
   ) => {
-    const filename = file.name.replace(/\.[^/.]+$/, "");
+    try {
+      const extension = file.name.split('.').pop()?.toLowerCase() || 'file';
 
-    const item: StoredGalleryItem = {
-      id: crypto.randomUUID(),
-      title: title?.trim() || filename,
-      category: category || "Uncategorised",
-      year: String(new Date().getFullYear()),
-      type: file.type.startsWith("video/")
-        ? "video"
-        : "image",
-      blob: file,
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-    };
+      const safeName = file.name
+        .replace(/\.[^/.]+$/, '')
+        .replace(/[^a-zA-Z0-9-_]/g, '-')
+        .replace(/-+/g, '-')
+        .toLowerCase();
 
-    await addGalleryItem(item);
-    await loadItems();
+      const fileName = `${crypto.randomUUID()}-${safeName}.${extension}`;
+
+      const storagePath = `gallery/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('gallery-media')
+        .upload(storagePath, file, {
+          cacheControl: '3600',
+          upsert: false,
+          contentType: file.type,
+        });
+
+      if (uploadError) {
+        console.error('Upload error:', uploadError);
+        throw uploadError;
+      }
+
+      const type = file.type.startsWith('video/')
+        ? 'video'
+        : 'image';
+
+      const { error: databaseError } = await supabase
+        .from('gallery_items')
+        .insert({
+          title: title?.trim() || 'Untitled Project',
+          category: category || DEFAULT_CATEGORY,
+          year: String(new Date().getFullYear()),
+          type,
+          storage_path: storagePath,
+        });
+
+      if (databaseError) {
+        console.error('Database insert error:', databaseError);
+
+        // Remove uploaded file if database insert fails
+        await supabase.storage
+          .from('gallery-media')
+          .remove([storagePath]);
+
+        throw databaseError;
+      }
+
+      await reload();
+    } catch (error) {
+      console.error('Failed to add gallery item:', error);
+      throw error;
+    }
   };
 
   const editItem = async (
     id: string,
-    data: {
-      title?: string;
-      category?: string;
-      year?: string;
-    },
+    title: string,
+    category: string
   ) => {
-    await updateGalleryItem(id, {
-      title:
-        data.title?.trim() || "Untitled Project",
-      category:
-        data.category?.trim() || "Uncategorised",
-      year:
-        data.year?.trim() ||
-        String(new Date().getFullYear()),
-    });
+    const { error } = await supabase
+      .from('gallery_items')
+      .update({
+        title: title.trim() || 'Untitled Project',
+        category: category || DEFAULT_CATEGORY,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id);
 
-    await loadItems();
+    if (error) {
+      console.error('Error editing gallery item:', error);
+      throw error;
+    }
+
+    await reload();
   };
 
   const removeItem = async (id: string) => {
-    await deleteGalleryItem(id);
-    await loadItems();
+    try {
+      const item = items.find((galleryItem) => galleryItem.id === id);
+
+      if (!item) {
+        throw new Error('Gallery item not found');
+      }
+
+      const { error: storageError } = await supabase.storage
+        .from('gallery-media')
+        .remove([item.storage_path]);
+
+      if (storageError) {
+        console.error('Storage delete error:', storageError);
+      }
+
+      const { error: databaseError } = await supabase
+        .from('gallery_items')
+        .delete()
+        .eq('id', id);
+
+      if (databaseError) {
+        console.error('Database delete error:', databaseError);
+        throw databaseError;
+      }
+
+      await reload();
+    } catch (error) {
+      console.error('Failed to remove gallery item:', error);
+      throw error;
+    }
   };
 
-  /* ------------------------------------------------------------------------ */
-  /* CATEGORIES                                                               */
-  /* ------------------------------------------------------------------------ */
-
   const createCategory = async (name: string) => {
-    await addCategory(name);
-    await loadCategories();
+    const cleanName = name.trim();
+
+    if (!cleanName) {
+      return;
+    }
+
+    const { error } = await supabase
+      .from('gallery_categories')
+      .insert({
+        name: cleanName,
+      });
+
+    if (error) {
+      console.error('Error creating category:', error);
+      throw error;
+    }
+
+    await reload();
   };
 
   const editCategory = async (
     oldName: string,
-    newName: string,
+    newName: string
   ) => {
-    await renameCategory(oldName, newName);
+    const cleanNewName = newName.trim();
 
-    await Promise.all([
-      loadCategories(),
-      loadItems(),
-    ]);
+    if (!cleanNewName || oldName === DEFAULT_CATEGORY) {
+      return;
+    }
+
+    const { error: categoryError } = await supabase
+      .from('gallery_categories')
+      .update({
+        name: cleanNewName,
+      })
+      .eq('name', oldName);
+
+    if (categoryError) {
+      console.error('Error renaming category:', categoryError);
+      throw categoryError;
+    }
+
+    const { error: itemsError } = await supabase
+      .from('gallery_items')
+      .update({
+        category: cleanNewName,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('category', oldName);
+
+    if (itemsError) {
+      console.error('Error updating category items:', itemsError);
+      throw itemsError;
+    }
+
+    await reload();
   };
 
   const removeCategory = async (name: string) => {
-    await deleteCategory(name);
+    if (name === DEFAULT_CATEGORY) {
+      return;
+    }
 
-    await Promise.all([
-      loadCategories(),
-      loadItems(),
-    ]);
+    // Move existing gallery items into Uncategorised
+    const { error: itemsError } = await supabase
+      .from('gallery_items')
+      .update({
+        category: DEFAULT_CATEGORY,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('category', name);
+
+    if (itemsError) {
+      console.error('Error moving category items:', itemsError);
+      throw itemsError;
+    }
+
+    const { error: categoryError } = await supabase
+      .from('gallery_categories')
+      .delete()
+      .eq('name', name);
+
+    if (categoryError) {
+      console.error('Error deleting category:', categoryError);
+      throw categoryError;
+    }
+
+    await reload();
   };
 
   return {
     items,
     categories,
     loading,
-
     addItem,
     editItem,
     removeItem,
-
     createCategory,
     editCategory,
     removeCategory,
-
     reload,
   };
 }
